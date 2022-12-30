@@ -1,73 +1,123 @@
+<br/>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="https://github.com/ShaanCoding/Monday">
+    <img src="https://vitejs.dev/logo-with-shadow.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Monday Board Snapshot</h3>
+
+  <p align="center">
+    Snapshot your Monday boards any time!
+    <br/>
+    <br/>
+  </p>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Downloads](https://img.shields.io/github/downloads/ShaanCoding/Monday/total) ![Contributors](https://img.shields.io/github/contributors/ShaanCoding/Monday?color=dark-green) ![Issues](https://img.shields.io/github/issues/ShaanCoding/Monday) ![License](https://img.shields.io/github/license/ShaanCoding/Monday) 
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table Of Contents
 
-## Description
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## About The Project
 
-## Installation
+This project is a simple full-stack application, whose purpose is to snapshot board states from monday.com API. The project assumes a company role approach where each deployment of this application is for one company with employees registering to the application and taking snapshots of board states 
 
-```bash
-$ npm install
+
+## Built With
+
+This project is divided into 2 parts, server, and client.
+
+**Server**
+The server was built primarily with :
+* Node Js [Nest js] - As per instructions
+* Mongo DB [Mongoose Orm] - As per instructions
+* Axios - for making requests to the Monday.com server
+
+**Client**
+The client was constructed with 
+* React Js - As per instructions
+* Bootstrap 5 - As per instructions
+* Vite - For fast setup and faster build time
+* Axios - for making requests to the backend
+* Formik - for easy form validation
+* Yup - to generate schema for validation
+
+
+
+
+
+
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+The first tool that needs to be installed is
+
+* npm
+
+and can be done using the following : 
+```sh
+npm install npm@latest -g
 ```
 
-## Running the app
+### Installation
 
-```bash
-# development
-$ npm run start
+1. Get a free API Key at [https://www.monday.com)
 
-# watch mode
-$ npm run start:dev
+2. Clone the repo
 
-# production mode
-$ npm run start:prod
+```sh
+git clone https://github.com/natghi2010/Monday
 ```
 
-## Test
+3. Change the directory to the 'server' folder and run:
 
-```bash
-# unit tests
-$ npm run test
+```sh
+npm install
+```
+5. Rename env.dev file to .env
 
-# e2e tests
-$ npm run test:e2e
+6. Enter your configuration details inside the .env file.
 
-# test coverage
-$ npm run test:cov
+7. Change the directory to the 'client' folder and run:
+
+```sh
+npm install
 ```
 
-## Support
+8. Inside the client folder, navigate to the src/config/config.js file and change the server to your address. e.g 'http://localhost:4000'
+The configuration should look like this:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```JS
+export const BASE_URL = '';
+```
 
-## Stay in touch
+## Usage
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+There is a demo available here: https://natnaelghirma.com/
 
-## License
+For the purpose of the documentation
+I have made 5 searchable boards with names of:
+* Seo Plus
+* Mine Marketing
+* Blogging Network
+* Natnael Ghirma
+* Social Media
 
-Nest is [MIT licensed](LICENSE).
+
+
+
+## Authors
+
+* **Natnael Ghirma** - *Software Engineer* - [Natnael Ghirma](natnaelghirma.com) - **
+
