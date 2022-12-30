@@ -116,10 +116,6 @@ I have made 5 searchable boards with names of:
 * Social Media
 
 
-### Creating A Pull Request
-
-
-
 ## Authors
 
 * **Natnael Ghirma** - *Software Engineer* - [Natnael Ghirma](natnaelghirma.com) - **
