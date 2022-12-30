@@ -60,7 +60,6 @@ function SavedBoards() {
             <Card.Body>
               <div className="mb-3 mt-md-4">
                 <h4>Search Saved Board ({boards.length})</h4>
-                {JSON.stringify(filters)}
               </div>
 
               <div className="row">

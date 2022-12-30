@@ -11,7 +11,7 @@ function LoginOrRegister(props) {
     <Container className="ml">
       <Row style={{ width: "30rem",marginLeft:"43em" }}>
         <Col md={12} lg={12} xs={12}>
-          <div className="border border-3 border-primary"></div>
+          <div className={"border border-3 border-primary"}></div>
           <Card className="shadow">
             <Card.Body>
               <div className="mb-3 mt-md-4">

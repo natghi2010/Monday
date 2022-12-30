@@ -12,18 +12,23 @@ import { Save, Search } from "react-bootstrap-icons";
 import { useEffect } from "react";
 import axios from "axios";
 import SavedBoards from "../savedBoards";
+import Loading from "../../common/Loading";
 
 function BoardSearch() {
   const [boards, setBoards] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   const saveBoard = (board) => {
+    setIsSubmitting(true);
     axios
       .post("/board/new", board)
       .then((res) => {
-        console.log(res.data);
+        setIsSubmitting(false);
+         alert(res.data.message);
       })
       .catch((err) => {
+        setIsSubmitting(false);
         console.log(err);
       });
   };
@@ -32,17 +37,18 @@ function BoardSearch() {
     e.preventDefault();
     let term = e.target.value;
     if(term.length < 1) return;
+    setIsSubmitting(true);
     axios
       .get("/board/?name=" + term)
       .then((res) => {
-        console.log(res.data);
+        setIsSubmitting(false);
+        setBoards(res.data.data);
       })
       .catch((err) => {
+        setIsSubmitting(false);
         console.log(err);
       });
   };
-
-  useEffect(() => {}, []);
 
   return (
     <Container className="mt-5 container">
@@ -52,7 +58,7 @@ function BoardSearch() {
           <Card className="shadow">
             <Card.Body>
               <div className="mb-3 mt-md-4">
-                <h4>Search Board</h4>
+                <h4>Search Boards from monday.com</h4>
               </div>
               <div className="row">
                 <div className="offset-md-9 col-md-3 mt-3">
@@ -74,19 +80,22 @@ function BoardSearch() {
                         <th>Board ID</th>
                         <th>Name</th>
                         <th>State</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {boards.map((board) => {
+                    <tbody className="text-center">
+                      {isSubmitting && <tr><td colSpan={4}><Loading/></td></tr>}
+                      {!isSubmitting && boards.map((board) => {
                         return (
-                          <tr>
+                          <tr key={board.id}>
                             <td>{board.id}</td>
                             <td>{board.name}</td>
                             <td>{board.state}</td>
                             <td>
-                              <Button className="btn btn-primary" onClick={()=>{saveBoard(board)}}>
+                            {isSubmitting && <Loading/>}
+                              {!isSubmitting && <Button className="btn btn-primary" onClick={()=>{saveBoard(board)}}>
                                 <Save /> Save
-                              </Button>
+                              </Button>}
                             </td>
                           </tr>
                         );

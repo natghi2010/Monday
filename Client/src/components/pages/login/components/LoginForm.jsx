@@ -1,32 +1,43 @@
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Formik, Field, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import Loading from "../../../common/Loading";
-import { AppContext} from "../../../../App";
+import { AppContext } from "../../../../App";
 import axios from "axios";
 //import { get, post } from "../../lib/api";
 
- const LoginForm = () => {
-//get app context
+const LoginForm = () => {
+  //get app context
   const { user, setUser } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = (e) => {
     setIsSubmitting(true);
-    axios.post("/auth/login",{
-      email,
-      password
-    }).then(res => {
-      window.localStorage.setItem("user", JSON.stringify(res.data.data));
-      setUser(res.data.data);
-    }).catch((err) => {
-      console.log(err);
-      setIsSubmitting(false);
-    })
+    axios
+      .post("/auth/login", {
+        email,
+        password,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          
+         
+          setIsSubmitting(false);
+          setUser(res.data.data);
+          window.location.href = "/";
+      
+        } 
+      })
+      .catch((err) => {
+        setErrors(err.response.data.message);
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -61,13 +72,8 @@ import axios from "axios";
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <p className="small">
-          <a className="text-primary" href="#!">
-            Forgot password?
-          </a>
-        </p>
-      </Form.Group>
+      <span className="text-danger">{errors}</span>
+
 
       <div className="d-grid">
         {!isSubmitting && (
@@ -78,11 +84,9 @@ import axios from "axios";
         <div align="center">
           {isSubmitting && <Loading text="Logging in..." />}
         </div>
-        
       </div>
     </Form>
   );
 };
 
 export default LoginForm;
-
