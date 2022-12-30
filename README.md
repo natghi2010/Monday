@@ -89,7 +89,7 @@ npm install
 
 6. Enter your configuration details inside the .env file.
 7. To run the server side development server enter:
-8. ```sh
+ ```sh
 npm start
 ```
 
