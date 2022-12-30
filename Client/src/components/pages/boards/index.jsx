@@ -13,16 +13,23 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function BoardSearch() {
-  // useEffect(() => {
-  //   axios
-  //     .post("/board/search",{})
-  //     .then(res => {
-  //      console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  const [boards, setBoards] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let term = e.target.value;
+    if(term.length < 1) return;
+    axios
+      .get("/board/?name=" + term)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <Container className="mt-5 container">
@@ -39,6 +46,9 @@ function BoardSearch() {
                   <Form.Control
                     type="text"
                     placeholder="Search by Board Name"
+                    onChange={(e) => {
+                      handleSearch(e);
+                    }}
                   />
                 </div>
               </div>
@@ -54,16 +64,20 @@ function BoardSearch() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <Button className="btn btn-primary">
-                            <Save /> Save
-                          </Button>
-                        </td>
-                      </tr>
+                      {boards.map((board) => {
+                        return (
+                          <tr>
+                            <td>{board.id}</td>
+                            <td>{board.name}</td>
+                            <td>{board.state}</td>
+                            <td>
+                              <Button className="btn btn-primary">
+                                <Save /> Save
+                              </Button>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 </div>

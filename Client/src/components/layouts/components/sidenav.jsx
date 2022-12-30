@@ -25,15 +25,15 @@ const handleLogout = () => {
 
 function SideNavItem(props) {
   return (
-    <il className="nav-item  text-light">
-      <a href={props.link} className="nav-link mb-2">
-        <div className="row">
+    <li className="nav-item mt-3 ">
+      <a href={props.link} className="nav-link mb-2 text-light">
+        <div className="row mt-4">
           <div className="col-auto">{props.icon}</div>
           <div className="col-auto">{props.title}</div>
         </div>
       </a>
 
-    </il>
+    </li>
   );
 }
 

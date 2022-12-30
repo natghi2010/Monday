@@ -16,14 +16,13 @@ function LoginOrRegister(props) {
             <Card.Body>
               <div className="mb-3 mt-md-4">
              
-             <Logo/>
+           
                 <h2 className="fw-bold mb-2 text-uppercase text-center ">
                   Monday
                 </h2>
 
                 {formMode == 'login' ? <p className="mb-5 text-center">Please enter your email and password to login</p> : 
                 <p className="mb-5 text-center">Please enter your info to sign up</p>}
-
 
                 <div className="mb-3">
                     {formMode == 'login' ? <LoginForm/> : <SignUpForm/>}

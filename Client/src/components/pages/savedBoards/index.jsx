@@ -7,12 +7,14 @@ import {
   Table,
   Button,
   Spinner,
+  Badge,
 } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import Loading from "../../common/Loading";
 import Filters from "./components/filters";
+import * as moment from 'moment';
 
 function SavedBoards() {
   const [boards, setBoards] = useState([]);
@@ -20,7 +22,7 @@ function SavedBoards() {
   const [loading, setLoading] = useState(false);
 
   const searchSavedBoards = (filters) => {
-    removeEmptyFilters(filters);
+    filters = removeEmptyFilters(filters);
 
     setLoading(true);
     axios
@@ -58,13 +60,11 @@ function SavedBoards() {
             <Card.Body>
               <div className="mb-3 mt-md-4">
                 <h4>Search Saved Board ({boards.length})</h4>
-                {
-                 JSON.stringify(filters)
-                }
+                {JSON.stringify(filters)}
               </div>
 
               <div className="row">
-                <Filters setFilter = {setFilters}/>
+                <Filters filters={filters} setFilter={setFilters} />
               </div>
 
               <div className="row">
@@ -96,10 +96,10 @@ function SavedBoards() {
                           </tr>
                         )}
                         {boards.map((board, index) => (
-                          <tr key={index}>
+                          <tr key={index} className="text-center  ">
                             <td>{board.id}</td>
                             <td>{board.name}</td>
-                            <td>{board.state}</td>
+                            <td><Badge bg={board.state == 'active' ? 'success': 'danger'}>{board.state}</Badge></td>
                             <td>{board.timestamp}</td>
                           </tr>
                         ))}
