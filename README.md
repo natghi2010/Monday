@@ -101,6 +101,10 @@ The configuration should look like this:
 ```JS
 export const BASE_URL = '';
 ```
+9. Finally to run the client side development server
+```sh
+npm run dev
+```
 
 ## Usage
 
