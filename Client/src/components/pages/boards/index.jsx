@@ -11,9 +11,22 @@ import { useState } from "react";
 import { Save, Search } from "react-bootstrap-icons";
 import { useEffect } from "react";
 import axios from "axios";
+import SavedBoards from "../savedBoards";
 
 function BoardSearch() {
   const [boards, setBoards] = useState([]);
+
+
+  const saveBoard = (board) => {
+    axios
+      .post("/board/new", board)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -71,7 +84,7 @@ function BoardSearch() {
                             <td>{board.name}</td>
                             <td>{board.state}</td>
                             <td>
-                              <Button className="btn btn-primary">
+                              <Button className="btn btn-primary" onClick={()=>{saveBoard(board)}}>
                                 <Save /> Save
                               </Button>
                             </td>

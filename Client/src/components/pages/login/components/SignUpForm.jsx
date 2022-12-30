@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Formik, Field, useFormik, FormikProvider } from "formik";
+import Loading from "../../../common/Loading";
+import axios from "axios";
 // import * as Yup from "yup";
 // import { get, post } from "../../lib/api";
 
@@ -11,9 +13,21 @@ const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [user,setUser] = useState(null);
 
   const handleSubmit = () => {
-    console.log("Submit");
+    axios.post("/auth/login",{
+      firstName,
+      lastName,
+      email,
+      password
+    }).then(res => {
+      window.localStorage.setItem("user", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+      setIsSubmitting(false);
+    })
   };
 
   return (
@@ -77,7 +91,8 @@ const SignUpForm = () => {
       </Form.Group>
 
       <div className="d-grid">
-        <Button
+        {isSubmitting && <Loading text="Submitting"/>}
+        {!isSubmitting && <Button
           variant="primary"
           onClick={(e) => {
             e.preventDefault();
@@ -85,7 +100,7 @@ const SignUpForm = () => {
           }}
         >
           Sign Up
-        </Button>
+        </Button>}
       </div>
     </Form>
   );

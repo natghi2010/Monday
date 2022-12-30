@@ -17,22 +17,21 @@ const items = [
     link: "/savedBoards",
   },
 ];
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
 
-const handleLogout = () => {
-  localStorage.removeItem("user");
-  window.location.reload();
-};
 
 function SideNavItem(props) {
   return (
-    <li className="nav-item mt-3 ">
-      <a href={props.link} className="nav-link mb-2 text-light">
-        <div className="row mt-4">
+    <li className="nav-item mt-3">
+      <a href={props.link} className="nav-link mb-2">
+        <div className="row mt-4 text-light">
           <div className="col-auto">{props.icon}</div>
           <div className="col-auto">{props.title}</div>
         </div>
       </a>
-
     </li>
   );
 }
