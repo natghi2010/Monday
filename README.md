@@ -88,20 +88,25 @@ npm install
 5. Rename env.dev file to .env
 
 6. Enter your configuration details inside the .env file.
+7. To run the server side development server enter:
+8. ```sh
+npm start
+```
 
-7. Change the directory to the 'client' folder and run:
+
+9. To install the client side requirments, change the directory to the 'client' folder and run:
 
 ```sh
 npm install
 ```
 
-8. Inside the client folder, navigate to the src/config/config.js file and change the server to your address. e.g 'http://localhost:4000'
+10. Inside the client folder, navigate to the src/config/config.js file and change the server to your address. e.g 'http://localhost:4000'
 The configuration should look like this:
 
 ```JS
 export const BASE_URL = '';
 ```
-9. Finally to run the client side development server
+11. Finally to run the client side development server
 ```sh
 npm run dev
 ```
