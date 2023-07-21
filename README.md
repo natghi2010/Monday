@@ -113,15 +113,7 @@ npm run dev
 
 ## Usage
 
-There is a demo available here: https://natnaelghirma.com/
 
-For the purpose of the documentation
-I have made 5 searchable boards with names of:
-* Seo Plus
-* Mine Marketing
-* Blogging Network
-* Natnael Ghirma
-* Social Media
 
 
 
